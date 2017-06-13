@@ -28,8 +28,8 @@ debug = True
 
 
 def main(arguments):
-    infile_name = arguments[1]
-    dest_name = arguments[2]
+    infile_name = ('.')
+    dest_name = ('./MAIL/outbox.mbox')
 
     if debug:
         print "Input is:  " + infile_name
@@ -82,7 +82,7 @@ def addFileToMbox(fi, dest_mbox):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        sys.stderr.write("Usage: ./emlToMbox.py input outbox.mbox\n")
-        sys.exit(1)
+    #if len(sys.argv) != 3:
+        #sys.stderr.write("Usage: ./emlToMbox.py input outbox.mbox\n")
+        #sys.exit(1)
     sys.exit(main(sys.argv))
