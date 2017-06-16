@@ -9,14 +9,6 @@ The output mbox will be created if it doesn't already exist.  If it exists,
 it will be appended to.  There is no checking for duplicates, so use caution.
 If duplicate filtering is desired, it could be added to addFileToMbox().
 Inspired by http://www.cosmicsoft.net/emlxconvert.html
-
-Usage:
-$ ./emlToMbox.py inputdir/ output.mbox
-$ ./emlToMbox.py input.eml output.mbox
-
-Requires Python 2.5 or later
-
-STATUS:  Tested and appears to work.
 """
 
 import os
@@ -27,18 +19,18 @@ global debug
 debug = True
 
 
-def main(arguments):
-    infile_name = ('.')
-    dest_name = ('./MAIL/outbox.mbox')
+def main(arguments): 
+    infile_name = ('.') # de variabel wordt gelijk gemaakt aan de huidige map
+    dest_name = ('./MAIL/outbox.mbox') # de variabel wordt een gelijk gemaakt aan een bestand in het opgegeven pad
 
     if debug:
         print "Input is:  " + infile_name
         print "Output is: " + dest_name
 
-    dest_mbox = mailbox.mbox(dest_name, create=True)  # if dest doesn't exist create it
-    dest_mbox.lock()  # lock the mbox file
+    dest_mbox = mailbox.mbox(dest_name, create=True)  # als de destinatie niet bestaat wordt deze aangemaakt
+    dest_mbox.lock()  # de mbox file wordt gelocked
 
-    if os.path.isdir(infile_name):
+    if os.path.isdir(infile_name): # deze if wordt uitgevoerd als er een map wordt meegegeven
         if debug:
             print "Detected directory as input, using directory mode"
         count = 0
