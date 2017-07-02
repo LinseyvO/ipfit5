@@ -1,23 +1,13 @@
 #!/usr/bin/env python
+'''
+dit script convert een hele folder met eml bestanden of een enkel eml bestand naar een mbox file
 
-""" Converts a directory full of .eml files to a single Unix "mbox" file.
+als input wordt dus een folder en een enkele file geaccepteerd
 
-Accepts as input either an individual .eml file or a directory containing one
-or more .eml files.
+als output.mbox nog niet bestaat wordt deze aangemaakt. Als hij bestaat,
+Wordt er data aan toegevoegd. 
+'''
 
-The output mbox will be created if it doesn't already exist.  If it exists,
-it will be appended to.  There is no checking for duplicates, so use caution.
-If duplicate filtering is desired, it could be added to addFileToMbox().
-Inspired by http://www.cosmicsoft.net/emlxconvert.html
-
-Usage:
-$ ./emlToMbox.py inputdir/ output.mbox
-$ ./emlToMbox.py input.eml output.mbox
-
-Requires Python 2.5 or later
-
-STATUS:  Tested and appears to work.
-"""
 
 import os
 import sys
@@ -28,18 +18,18 @@ debug = True
 
 
 def main(arguments):
-    infile_name = ('./mail')
-    dest_name = ('./MAIL/outbox.mbox')
+    infile_name = ('./mail') # de variabel wordt gelijk gemaakt aan de huidige map
+    dest_name = ('./mail/outbox.mbox') # de variabel wordt een gelijk gemaakt aan een bestand in het opgegeven pad
 
     if debug:
-        print "Input is:  " + infile_name
-        print "Output is: " + dest_name
+        print "Input is:  " + infile_name #het script geeft feedback
+        print "Output is: " + dest_name #het script geeft feedback
 
-    if not os.path.exists('./MAIL'):
-        os.makedir('./MAIL')
+    if not os.path.exists('./mail'): # er wordt gekeken of het opgegeven pad bestaat
+        os.makedir('./mail') # zoniet wordt deze aangemaakt
 
-    dest_mbox = mailbox.mbox(dest_name, create=True)  # if dest doesn't exist create it
-    #dest_mbox.lock()  # lock the mbox file
+    dest_mbox = mailbox.mbox(dest_name, create=True)  # als de destinatie niet bestaat wordt deze aangemaakt
+    #dest_mbox.lock()  # lock de mbox file
 
     if os.path.isdir(infile_name):
         if debug:
