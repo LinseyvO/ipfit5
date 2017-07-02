@@ -3,7 +3,7 @@ import csv, sqlite3 # modules worden geimporteerd
 con = sqlite3.connect("email.db") # er wordt een database verbinding opgezet
 con.text_factory = str # hiermee kan je de return waarde controlen
 cur = con.cursor() # de cursor zorgt ervoor dat er operaties uitgevoerd kunnen worden
-cur.execute("CREATE TABLE Mail (subject VARCHAR, sender VARCHAR, receiver VARCHAR, date datetime, body text);") # deze tabel wordt aangemaakt
+cur.execute("CREATE TABLE Mail (id INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR, sender VARCHAR, receiver VARCHAR, date datetime, body text);") # deze tabel wordt aangemaakt
 
 with open('./mail/cleaned_mail.csv', 'rb') as fin: # hier wordt het bestand met data geopend
     dr = csv.DictReader(fin) # deze zorgt ervoor dat de eerste rij in het csv bestand als key worden gezien en de rest als value
